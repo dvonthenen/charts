@@ -1,4 +1,4 @@
-{{- if .Values.config.enabled -}}
+{{- if .Values.config.enabled | .Values.global.config.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -25,7 +25,7 @@ data:
     # VirtualCenter section
     vcenter:
       {{ .Release.Name }}:
-        server: {{ .Values.config.vcenter }}
+        server: {{ .Values.config.vcenter | .Values.global.config.vcenter }}
         datacenters:
-          - {{ .Values.config.datacenter }}
+          - {{ .Values.config.datacenter | .Values.global.config.datacenter }}
 {{- end -}}
